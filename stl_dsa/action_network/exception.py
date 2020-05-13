@@ -1,0 +1,2 @@
+class ActionNetworkException(Exception):
+    pass

@@ -1,7 +1,10 @@
 """
 Base settings to build other settings files upon.
 """
-import os, json, environ
+import json
+import environ
+import os
+
 
 ROOT_DIR = (
     environ.Path(__file__) - 3
@@ -301,10 +304,14 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ),
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_PERMISSION_CLASSES":
+        ("rest_framework.permissions.IsAuthenticated",),
 }
 # Your stuff...
 # ------------------------------------------------------------------------------
 WAGTAIL_SITE_NAME = 'St Louis DSA'
-ACTIONNETWORK_API_KEYS = json.loads(os.environ['ACTIONNETWORK_API_KEYS'])
+ACTIONNETWORK_API_KEYS = json.loads(os.environ.get(
+    'ACTIONNETWORK_API_KEYS', '{}'))
+ACTIONNETWORK_ROOT = 'https://actionnetwork.org'
+
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]
